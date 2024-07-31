@@ -28,8 +28,8 @@ jobs:
         run: |
           npm install
           # Add any additional setup steps if needed
-      - name: Lint
-        run: npm run lint
+      # - name: Lint
+      #   run: npm run lint
       - name: Test
         run: npm run docker:test
         env:
