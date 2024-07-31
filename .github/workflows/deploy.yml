@@ -26,12 +26,12 @@ jobs:
           node-version: '${{ matrix.node-version }}'
       - name: Install Dependencies
         run: |
-          npm install
+          yarn install
           # Add any additional setup steps if needed
       - name: Lint
-        run: npm run lint
+        run: yarn run lint
       - name: Test
-        run: npm run docker:test
+        run: yarn run docker:test
         env:
           MONGODB_URL: mongodb://localhost:27017
           NODE_ENV: development
