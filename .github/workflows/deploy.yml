@@ -25,9 +25,7 @@ jobs:
         with:
           node-version: '${{ matrix.node-version }}'
       - name: Install Dependencies
-        run: |
-          yarn install
-          # Add any additional setup steps if needed
+        run: yarn install
       - name: Lint
         run: yarn run lint
       - name: Test
@@ -35,6 +33,12 @@ jobs:
         env:
           MONGODB_URL: mongodb://localhost:27017
           NODE_ENV: development
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1 # Replace with your desired AWS region
       - name: Deploy
         run: yarn run deploy:affected
         env:
