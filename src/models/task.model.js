@@ -31,28 +31,39 @@ const taskSchema = mongoose.Schema(
         type: String,
       },
     ],
-    comments: {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        required: true,
-      },
-      content: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-    assignees: [
+    comments: [
       {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        required: [true, 'Assignees are required'],
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User',
+          required: true,
+        },
+        content: {
+          type: String,
+          required: true,
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
+
+    assignees: {
+      type: [
+        {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User',
+        },
+      ],
+      validate: {
+        validator(v) {
+          return v && v.length > 0;
+        },
+        message: 'At least one assignee is required',
+      },
+      required: [true, 'Assignees are required'],
+    },
     status: {
       type: mongoose.Schema.ObjectId,
       ref: 'Status',
