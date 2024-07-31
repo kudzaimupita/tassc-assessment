@@ -35,3 +35,8 @@ jobs:
         env:
           MONGODB_URL: mongodb://localhost:27017
           NODE_ENV: development
+      - name: Deploy
+        run: yarn run deploy:affected
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
