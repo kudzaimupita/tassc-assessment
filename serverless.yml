@@ -1,0 +1,27 @@
+service: tascc-api
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+custom:
+  serverless-offline:
+    lambdaPort: 3002
+    httpPort: 4000
+provider:
+  name: aws
+  runtime: nodejs18.x
+  tracing:
+    lambda: true
+  ecr:
+    images:
+      api:
+        path: ./
+useDotenv: true
+functions:
+  api:
+    image:
+      name: api
+    events:
+      - httpApi: '*'
+package:
+  individually: true

@@ -1,9 +1,9 @@
 FROM public.ecr.aws/lambda/nodejs:16
 
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 
 # Install app dependencies
-RUN npm install
+RUN yarn install
 
 # Bundle app source
 COPY . .

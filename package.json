@@ -20,7 +20,8 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
     "prettier:fix": "prettier --write **/*.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy:affected": "serverless deploy"
   },
   "keywords": [
     "node",
@@ -63,7 +64,10 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "pm2": "^5.1.0",
+    "serverles": "^3.27.1",
+    "serverless-esbuild": "^1.52.1",
     "serverless-http": "^3.2.0",
+    "serverless-offline": "^13.6.0",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.0.0",
