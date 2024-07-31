@@ -1,15 +1,11 @@
-FROM node:alpine
+FROM public.ecr.aws/lambda/nodejs:16
 
-RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
+COPY package.json package-lock.json ./
 
-WORKDIR /usr/src/node-app
+# Install app dependencies
+RUN npm install
 
-COPY package.json yarn.lock ./
+# Bundle app source
+COPY . .
 
-USER node
-
-RUN yarn install --pure-lockfile
-
-COPY --chown=node:node . .
-
-EXPOSE 3000
+CMD ["lambda.handler"]

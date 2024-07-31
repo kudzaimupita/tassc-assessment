@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  noprompt-api:
-    image: noprompt-api
+  tascc-api:
+    image: tascc-api
     build:
       context: .
       dockerfile: Test.Dockerfile
@@ -18,7 +18,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - .:/usr/src/noprompt-api
+      - .:/usr/src/tascc-api
     networks:
       - node-network
 

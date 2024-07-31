@@ -1,6 +1,6 @@
 version: '3'
 
 services:
-  noprompt-api:
-    container_name: noprompt-api-test
+  tascc-api:
+    container_name: tascc-api-test
     command: npm run test
