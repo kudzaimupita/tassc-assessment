@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Test.Dockerfile
     environment:
+      - NOVU_KEY=6ae8983a9c3151d3c9cc1773c911521c
       - MONGODB_URL=mongodb://mongodb:27017/system
       - JWT_SECRET=thisisasamplesecret
       - JWT_ACCESS_EXPIRATION_MINUTES=30

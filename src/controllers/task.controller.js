@@ -3,6 +3,10 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { taskService } = require('../services');
+const SendNotification = require('./notification.controller');
+const config = require('../config/config');
+// eslint-disable-next-line no-unused-vars
+const notifier = new SendNotification(config.novuKey);
 
 const createTask = catchAsync(async (req, res) => {
   req.body.createdBy = req.user.id;
