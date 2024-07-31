@@ -1,7 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
-const mongoose = require('mongoose');
 const mongoSanitize = require('express-mongo-sanitize');
 const compression = require('compression');
 const cors = require('cors');
@@ -14,18 +13,9 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
-const logger = require('./config/logger');
 
 const app = express();
 
-mongoose
-  .connect(config.mongoose.url, config.mongoose.options)
-  .then(() => {
-    logger.info('Connected to MongoDB');
-  })
-  .catch((err) => {
-    logger.error(err);
-  });
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
