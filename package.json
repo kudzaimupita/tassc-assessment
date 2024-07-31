@@ -67,7 +67,6 @@
     "serverles": "^3.27.1",
     "serverless-esbuild": "^1.52.1",
     "serverless-http": "^3.2.0",
-    "serverless-offline": "^13.6.0",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.0.0",
