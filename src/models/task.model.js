@@ -92,10 +92,6 @@ const taskSchema = mongoose.Schema(
         type: String,
       },
     ],
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,
