@@ -23,52 +23,25 @@ class SendNotification {
     }
   }
 
-  async sendUserWelcomeEmail(subscriberId, email, resetLink, securityEmail) {
+  async sendUserWelcomeEmail(subscriberId, email, inviteLink, companyName, username) {
     try {
-      await this.novu.trigger('password-reset', {
+      await this.novu.trigger('account-activation-VF9YriByJ', {
         to: {
           subscriberId,
           email,
         },
         payload: {
-          resetLink,
-          securityEmail,
+          inviteLink,
+          // securityEmail,
+          companyName,
+          username,
+        },
+        organization: {
+          logo: 'https://unsplash.com/photos/85ey1vFIwkc',
         },
       });
-    } catch (error) {
-      throw new Error(`Error sending password reset notification: ${error.message}`);
-    }
-  }
 
-  async sendTaskCreated(subscriberId, email, resetLink, securityEmail) {
-    try {
-      await this.novu.trigger('password-reset', {
-        to: {
-          subscriberId,
-          email,
-        },
-        payload: {
-          resetLink,
-          securityEmail,
-        },
-      });
-    } catch (error) {
-      throw new Error(`Error sending password reset notification: ${error.message}`);
-    }
-  }
-
-  async sendTaskStatusChanged(subscriberId, email, resetLink, securityEmail) {
-    try {
-      await this.novu.trigger('password-reset', {
-        to: {
-          subscriberId,
-          email,
-        },
-        payload: {
-          resetLink,
-          securityEmail,
-        },
-      });
+      return 'Password reset notification sent successfully.';
     } catch (error) {
       throw new Error(`Error sending password reset notification: ${error.message}`);
     }

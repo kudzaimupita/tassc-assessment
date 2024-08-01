@@ -1,17 +1,23 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const { authService, userService, tokenService, emailService } = require('../services');
+const SendNotification = require('./notification.controller');
+const config = require('../config/config');
+
+const notifier = new SendNotification(config.novuKey);
 
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
   const tokens = await tokenService.generateAuthTokens(user);
+  notifier.sendUserWelcomeEmail('6481be1fe0d0d1b39a05b474', user.email, '', '', user.name);
   res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
-  const user = await authService.loginUserWithEmailAndPassword(email, password);
+  const user = authService.loginUserWithEmailAndPassword(email, password);
   const tokens = await tokenService.generateAuthTokens(user);
+  notifier.sendUserWelcomeEmail('6481be1fe0d0d1b39a05b474', email, '', '', user.name);
   res.send({ user, tokens });
 });
 
